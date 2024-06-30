@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greeting Cards App</title>
+    <style>
+      .card {
+        width: 300px;
+        padding: 20px;
+        margin: 10px;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        background-color: #f0f0f0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .card h3 {
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+      }
+      .card p {
+        margin: 0;
+        font-size: 1.2rem;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      // GreetingCard component
+      const GreetingCard = ({ greeting, name }) => {
+        return (
+          <div className="card">
+            <h3>{greeting}</h3>
+            <p>Dear {name},</p>
+            <p>Best wishes!</p>
+          </div>
+        );
+      };
+
+      // App component
+      const App = () => {
+        // Array of greeting cards data
+        const greetingCards = [
+          { id: 1, greeting: "Happy Birthday", name: "John Doe" },
+          { id: 2, greeting: "Congratulations", name: "Jane Smith" },
+          { id: 3, greeting: "Merry Christmas", name: "Santa Claus" },
+          { id: 4, greeting: "Happy New Year", name: "Everyone" }
+        ];
+
+        return (
+          <div>
+            <h1>Greeting Cards</h1>
+            <div>
+              {greetingCards.map(card => (
+                <GreetingCard id={card.id} greeting={card.greeting} name={card.name} />
+              ))}
+            </div>
+          </div>
+        );
+      };
+
+      // Render the App component to the root element
+      const root = document.getElementById("root");
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
